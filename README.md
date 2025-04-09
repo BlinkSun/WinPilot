@@ -4,7 +4,7 @@
 ![WPF](https://img.shields.io/badge/WPF-MVVM-darkgreen)
 ![OpenAI](https://img.shields.io/badge/OpenAI-Ready-lightblue)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
-![MadeBy](https://img.shields.io/badge/Made%20with%20❤️%20by-BlinkSun-orange)
+![MadeBy](https://img.shields.io/badge/Made%20with%20❤️%20by-BlinkSun-blue)
 
 ---
 
@@ -54,7 +54,10 @@ Like **Copilot**, but **everywhere**.
 3. It builds a prompt like:
 
 ```
-The user is currently in SQL Server. The selected text is: "SELECT * FROM Client". The window title is "SSMS - Query.sql". The user wrote in the editor: "-- I want to add a new column for the phone number."
+The user is currently in SQL Server.
+The selected text is: "SELECT * FROM Client".
+The window title is "SSMS - Query.sql".
+The user wrote in the editor: "-- I want to add a new column for the phone number."
 ```
 
 4. GPT gets that context and replies:
@@ -102,6 +105,13 @@ You can choose to disable auto-send.
 
 ---
 
+## 📄 License
+
+[LICENSE](LICENSE) MIT — Free to use, remix, improve, and star ⭐  
+Just don't call it "Copilot" or Microsoft might... pilot your repo into oblivion 😅
+
+---
+
 ## 👨‍💻 About the author
 
 **Damien Villeneuve (aka BlinkSun)**  
@@ -110,14 +120,17 @@ Dad. Dev. Dreamer.
 
 ---
 
-## 📄 License
+<p align="center">
+  <strong>☕ Enjoying WinPilot?</strong><br/>
+  If this tool saved you a few brain cells or ALT+TABs...
+</p>
 
-MIT — Free to use, remix, improve, and star ⭐  
-Just don't call it "Copilot" or Microsoft might... pilot your repo into oblivion 😅
+<p align="center">
+  <a href="https://www.buymeacoffee.com/blinksun">
+    <img src="https://img.shields.io/badge/☕-Buy me a coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me A Coffee"/>
+  </a>
+</p>
 
----
-
-## ⭐ If you like it...
-
-Don’t be shy — click that ⭐️ !  
-WinPilot loves attention.
+<p align="center">
+  <em>Made with ❤️ by BlinkSun — fuelled by espresso and OpenAI tokens 😄</em>
+</p>
