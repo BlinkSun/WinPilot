@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using System.ComponentModel;
+using System.Windows;
 using WinPilot.Controllers;
 using WinPilot.Managers;
+using WinPilot.ViewModels;
 
 namespace WinPilot.Views;
 
@@ -37,8 +39,28 @@ public partial class SettingsWindow : Window
     /// </summary>
     private void OnShutdownClicked(object sender, RoutedEventArgs e)
     {
-        SettingsManager.Save();
-        HotkeyManager.Unregister();
-        Application.Current.Shutdown();
+        AppController.ShutdownApp();
+    }
+
+    /// <summary>
+    /// Handles the close event of the window.
+    /// </summary>
+    protected override void OnClosing(CancelEventArgs e)
+    {
+        base.OnClosing(e);
+        if (!IsKeyValidFromDataContext())
+            AppController.ShutdownApp();
+    }
+
+    /// <summary>
+    /// Checks if the API key is valid from the data context.
+    /// </summary>
+    private bool IsKeyValidFromDataContext()
+    {
+        if (DataContext is SettingsViewModel vm)
+        {
+            return vm.IsApiKeyValid;
+        }
+        return false;
     }
 }

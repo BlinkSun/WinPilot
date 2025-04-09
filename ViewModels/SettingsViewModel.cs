@@ -47,9 +47,15 @@ public class SettingsViewModel : ViewModelBase
             {
                 SettingsManager.OpenAIKey = value;
                 OnPropertyChanged(nameof(OpenAIKey));
+                OnPropertyChanged(nameof(IsApiKeyValid));
             }
         }
     }
+
+    /// <summary>
+    /// Gets a value indicating whether the OpenAI API key is valid.
+    /// </summary>
+    public bool IsApiKeyValid => !string.IsNullOrWhiteSpace(OpenAIKey) && OpenAIKey.StartsWith("sk-");
 
     /// <summary>
     /// Gets or sets the selected GPT model.

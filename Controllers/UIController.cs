@@ -38,7 +38,6 @@ public static class UIController
         {
             SettingsWindow settingsWindow = new()
             {
-                Owner = Application.Current.MainWindow,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
                 DataContext = new SettingsViewModel()
             };

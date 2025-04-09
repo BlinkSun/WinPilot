@@ -17,6 +17,7 @@ public partial class App : Application
         LanguageManager.InitializeFromSettings();
         base.OnStartup(e);
         ShutdownMode = ShutdownMode.OnExplicitShutdown;
+        AppController.CheckOpenAIKey();
         HotkeyManager.RegisterHotKey(
             SettingsManager.HotkeyKey,
             SettingsManager.HotkeyModifiers,

@@ -17,6 +17,7 @@
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <converters:ApiKeyValidationBrushConverter x:Key="ApiKeyValidationBrushConverter" />
         <Style x:Key="FlatButtonStyle" TargetType="Button">
             <Setter Property="Background" Value="#FF0078D7" />
             <Setter Property="Foreground" Value="White" />
@@ -213,7 +214,7 @@
                        Foreground="White"
                        Text="{x:Static resx:Strings.Lbl_APIKey}" />
             <Border Margin="0,0,0,16"
-                    BorderBrush="#FF0078D7"
+                    BorderBrush="{Binding IsApiKeyValid, Converter={StaticResource ApiKeyValidationBrushConverter}}"
                     BorderThickness="1">
                 <TextBox Height="30"
                          Padding="6"
@@ -300,6 +301,7 @@
                         Click="OnCloseClicked"
                         Content="{x:Static resx:Strings.Btn_Save}"
                         IsDefault="True"
+                        IsEnabled="{Binding IsApiKeyValid}"
                         Style="{StaticResource FlatButtonStyle}" />
             </Grid>
         </StackPanel>
