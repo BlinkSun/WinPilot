@@ -1,0 +1,307 @@
+﻿<Window x:Class="WinPilot.Views.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:converters="clr-namespace:WinPilot.Converters"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:resx="clr-namespace:WinPilot.Resources"
+        xmlns:viewModels="clr-namespace:WinPilot.ViewModels"
+        Title="{x:Static resx:Strings.Settings_Title}"
+        Width="400"
+        Height="500"
+        d:DataContext="{d:DesignInstance Type=viewModels:SettingsViewModel}"
+        ResizeMode="NoResize"
+        Topmost="True"
+        WindowStyle="ToolWindow"
+        mc:Ignorable="d">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:InverseBooleanToVisibilityConverter x:Key="InverseBooleanToVisibilityConverter" />
+        <Style x:Key="FlatButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#FF0078D7" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Padding="{TemplateBinding Padding}"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="8">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DropShadowEffect x:Key="DropShadowEffect"
+                          BlurRadius="16"
+                          Opacity="0.4"
+                          ShadowDepth="2"
+                          Color="Black" />
+        <Style x:Key="DarkComboBoxItemStyle" TargetType="ComboBoxItem">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#2D2D30" />
+            <Setter Property="Padding" Value="6,2" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource AncestorType=ComboBox}, Path=ActualWidth}" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBoxItem">
+                        <Border Name="Border"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsHighlighted" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FF0078D7" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FF3399FF" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="DarkComboBoxStyle" TargetType="ComboBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Background" Value="#2D2D30" />
+            <Setter Property="BorderBrush" Value="#FF0078D7" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Padding" Value="4,2" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ComboBox">
+                        <Grid>
+                            <ToggleButton Name="ToggleButton"
+                                          HorizontalAlignment="Stretch"
+                                          VerticalAlignment="Stretch"
+                                          HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="{TemplateBinding BorderThickness}"
+                                          ClickMode="Press"
+                                          Focusable="False"
+                                          Foreground="{TemplateBinding Foreground}"
+                                          IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
+                                <Grid Background="{TemplateBinding Background}">
+                                    <ContentPresenter Margin="6,0,20,0"
+                                                      HorizontalAlignment="Left"
+                                                      VerticalAlignment="Center"
+                                                      Content="{TemplateBinding SelectionBoxItem}"
+                                                      ContentStringFormat="{TemplateBinding SelectionBoxItemStringFormat}"
+                                                      ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}" />
+                                    <Path Margin="0,0,8,0"
+                                          HorizontalAlignment="Right"
+                                          VerticalAlignment="Center"
+                                          Data="M 0 0 L 4 4 L 8 0 Z"
+                                          Fill="White" />
+                                </Grid>
+                            </ToggleButton>
+                            <Popup Name="Popup"
+                                   MaxHeight="{TemplateBinding MaxDropDownHeight}"
+                                   AllowsTransparency="True"
+                                   Focusable="False"
+                                   IsOpen="{TemplateBinding IsDropDownOpen}"
+                                   Placement="Bottom"
+                                   PopupAnimation="Slide">
+                                <Border Background="#2D2D30"
+                                        BorderBrush="#FF0078D7"
+                                        BorderThickness="1">
+                                    <ScrollViewer>
+                                        <StackPanel IsItemsHost="True" />
+                                    </ScrollViewer>
+                                </Border>
+                            </Popup>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="ModernCheckboxStyle" TargetType="CheckBox">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontFamily" Value="Segoe UI" />
+            <Setter Property="FontSize" Value="13" />
+            <Setter Property="Cursor" Value="Hand" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="CheckBox">
+                        <StackPanel Orientation="Horizontal">
+                            <Border x:Name="Border"
+                                    Width="18"
+                                    Height="18"
+                                    Margin="0,0,6,0"
+                                    HorizontalAlignment="Center"
+                                    VerticalAlignment="Center"
+                                    Background="#2D2D30"
+                                    BorderBrush="#666"
+                                    BorderThickness="1"
+                                    CornerRadius="4">
+                                <Path x:Name="CheckMark"
+                                      Data="M 4 9 L 7 12 L 14 5"
+                                      Stroke="White"
+                                      StrokeEndLineCap="Round"
+                                      StrokeStartLineCap="Round"
+                                      StrokeThickness="2"
+                                      Visibility="Collapsed" />
+                            </Border>
+                            <ContentPresenter VerticalAlignment="Center" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="Border" Property="Background" Value="#FF0078D7" />
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF0078D7" />
+                                <Setter TargetName="CheckMark" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Border" Property="BorderBrush" Value="#FF0078D7" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter TargetName="Border" Property="Opacity" Value="0.4" />
+                                <Setter Property="Foreground" Value="#888" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Border Padding="20"
+            Background="#DD1E1E1E"
+            BorderBrush="#FF0078D7"
+            BorderThickness="1"
+            CornerRadius="0"
+            Effect="{DynamicResource DropShadowEffect}">
+        <StackPanel VerticalAlignment="Center" Orientation="Vertical">
+
+            <TextBlock Margin="0,0,0,4"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{x:Static resx:Strings.Lbl_Language}" />
+            <ComboBox Height="32"
+                      Margin="0,0,0,16"
+                      ItemContainerStyle="{StaticResource DarkComboBoxItemStyle}"
+                      ItemsSource="{Binding Languages}"
+                      SelectedValue="{Binding SelectedLanguage}"
+                      SelectedValuePath="Key"
+                      Style="{StaticResource DarkComboBoxStyle}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Value}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
+
+            <TextBlock Margin="0,0,0,4"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{x:Static resx:Strings.Lbl_APIKey}" />
+            <Border Margin="0,0,0,16"
+                    BorderBrush="#FF0078D7"
+                    BorderThickness="1">
+                <TextBox Height="30"
+                         Padding="6"
+                         VerticalAlignment="Center"
+                         Background="#FF2D2D30"
+                         BorderThickness="0"
+                         FontFamily="Segoe UI"
+                         FontSize="13"
+                         Foreground="White"
+                         Text="{Binding OpenAIKey, UpdateSourceTrigger=PropertyChanged}" />
+            </Border>
+
+            <TextBlock Margin="0,0,0,4"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{x:Static resx:Strings.Lbl_Model}" />
+            <ComboBox Height="32"
+                      Margin="0,0,0,16"
+                      DisplayMemberPath="DisplayName"
+                      ItemContainerStyle="{StaticResource DarkComboBoxItemStyle}"
+                      ItemsSource="{Binding GPTModels}"
+                      SelectedItem="{Binding SelectedModel, Mode=TwoWay}"
+                      Style="{StaticResource DarkComboBoxStyle}" />
+
+            <CheckBox Margin="0,0,0,16"
+                      Content="{x:Static resx:Strings.Chk_AutoSend}"
+                      FontSize="13"
+                      Foreground="White"
+                      IsChecked="{Binding AutoSendPrompt}"
+                      Style="{DynamicResource ModernCheckboxStyle}" />
+
+            <TextBlock Margin="0,0,0,4"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{x:Static resx:Strings.Lbl_Modifiers}" />
+            <StackPanel Margin="0,0,0,8" Orientation="Horizontal">
+                <CheckBox Margin="0,0,10,0"
+                          Content="Ctrl"
+                          FontSize="14"
+                          Foreground="White"
+                          IsChecked="{Binding ModifierCtrl}"
+                          Style="{DynamicResource ModernCheckboxStyle}" />
+                <CheckBox Margin="0,0,10,0"
+                          Content="Alt"
+                          FontSize="14"
+                          Foreground="White"
+                          IsChecked="{Binding ModifierAlt}"
+                          Style="{DynamicResource ModernCheckboxStyle}" />
+                <CheckBox Margin="0,0,10,0"
+                          Content="Shift"
+                          FontSize="14"
+                          Foreground="White"
+                          IsChecked="{Binding ModifierShift}"
+                          Style="{DynamicResource ModernCheckboxStyle}" />
+                <CheckBox Content="Win"
+                          FontSize="14"
+                          Foreground="White"
+                          IsChecked="{Binding ModifierWin}"
+                          Style="{DynamicResource ModernCheckboxStyle}" />
+            </StackPanel>
+
+            <TextBlock Margin="0,0,0,4"
+                       FontSize="14"
+                       Foreground="White"
+                       Text="{x:Static resx:Strings.Lbl_Hotkey}" />
+            <ComboBox Width="150"
+                      Height="32"
+                      Margin="0,0,0,16"
+                      HorizontalAlignment="Left"
+                      ItemContainerStyle="{StaticResource DarkComboBoxItemStyle}"
+                      ItemsSource="{Binding KeyOptions}"
+                      MaxDropDownHeight="200"
+                      SelectedItem="{Binding SelectedHotkeyKey}"
+                      Style="{StaticResource DarkComboBoxStyle}" />
+
+
+            <Grid Margin="0,16,0,0">
+                <Button HorizontalAlignment="Left"
+                        Background="Red"
+                        Click="OnShutdownClicked"
+                        Content="{x:Static resx:Strings.Btn_Shutdown}"
+                        Style="{StaticResource FlatButtonStyle}" />
+                <Button HorizontalAlignment="Right"
+                        Click="OnCloseClicked"
+                        Content="{x:Static resx:Strings.Btn_Save}"
+                        IsDefault="True"
+                        Style="{StaticResource FlatButtonStyle}" />
+            </Grid>
+        </StackPanel>
+    </Border>
+</Window>
