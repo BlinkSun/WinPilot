@@ -2,7 +2,7 @@
 
 ![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
 ![WPF](https://img.shields.io/badge/WPF-MVVM-darkgreen)
-![OpenAI](https://img.shields.io/badge/OpenAI-Ready-lightblue)
+![AI](https://img.shields.io/badge/AI-Multi--Provider-blue)
 ![License](https://img.shields.io/badge/License-MIT-brightgreen)
 ![MadeBy](https://img.shields.io/badge/Made%20with%20❤️%20by-BlinkSun-blue)
 
@@ -10,7 +10,7 @@
 
 ## 🧠 What is WinPilot?
 
-> _Ever wish GPT could just pop in and finish your thoughts... before you even ask?_  
+> _Ever wish AI could just pop in and finish your thoughts... before you even ask?_  
 > No more alt-tab. No more copy-paste.  
 > **WinPilot** is your universal AI assistant that works in **any Windows app**, triggered by a simple **keyboard shortcut**.
 
@@ -25,12 +25,24 @@ Like **Copilot**, but **everywhere**.
 - ✅ Global **hotkey trigger** (configurable)  
 - ✅ Automatically reads your screen & text context  
 - ✅ Takes a screenshot of the active window  
-- ✅ Sends everything to OpenAI (GPT-4 vision)  
-- ✅ Shows a beautiful animated suggestion window  
-- ✅ 1-click “Accept” → auto-pastes into the app you were using  
+- ✅ Sends everything to **your preferred AI provider** (OpenAI or Anthropic)  
+- ✅ Supports **multimodal models** (image input + text)  
+- ✅ Beautiful animated suggestion popup  
+- ✅ 1-click “Accept” → auto-pastes into your app  
 - ✅ Full WPF + MVVM + .NET 8  
 - ✅ **ResX localized** (English + Français + Español + Deutsch)  
 - ✅ ❤️ Designed with love and keyboard nerd energy
+
+---
+
+## 🤖 Supported AI Providers
+
+| Provider   | Models Included                    | Image Support |
+|------------|-------------------------------------|----------------|
+| **OpenAI** | GPT-4o, GPT-4 Turbo, GPT-4.5        | ✅              |
+| **Anthropic** | Claude 3.5 / 3.7 (Sonnet, Opus, Haiku) | ✅              |
+
+You can switch providers and models from the Settings window.
 
 ---
 
@@ -53,6 +65,8 @@ Like **Copilot**, but **everywhere**.
    - Screenshot of the active window  
 3. It builds a prompt like:
 
+
+
 ```
 The user is currently in SQL Server.
 The selected text is: "SELECT * FROM Client".
@@ -60,7 +74,7 @@ The window title is "SSMS - Query.sql".
 The user wrote in the editor: "-- I want to add a new column for the phone number."
 ```
 
-4. GPT gets that context and replies:
+4. The AI model (OpenAI or Claude) replies:
 
 ```sql
 ALTER TABLE Client ADD Phone VARCHAR(50);
@@ -74,8 +88,8 @@ ALTER TABLE Client ADD Phone VARCHAR(50);
 
 You can configure:
 
-- Your OpenAI API key (stored locally)
-- The GPT model (with image support)
+- Your **API key**
+- The **AI model** (with image support only)
 - Auto-send on hotkey
 - Your preferred shortcut keys
 
@@ -83,7 +97,7 @@ You can configure:
 
 ## 🔐 Privacy
 
-🧠 All context is kept locally except when explicitly sent to OpenAI.  
+🧠 All context is kept locally except when explicitly sent to the AI provider.  
 You can choose to disable auto-send.
 
 ---
@@ -132,5 +146,5 @@ Dad. Dev. Dreamer.
 </p>
 
 <p align="center">
-  <em>Made with ❤️ by BlinkSun — fuelled by espresso and OpenAI tokens 😄</em>
+  <em>Made with ❤️ by BlinkSun — fuelled by espresso and AI tokens 😄</em>
 </p>
