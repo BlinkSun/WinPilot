@@ -31,43 +31,43 @@ public class SettingsViewModel : ViewModelBase
     ];
 
     /// <summary>
-    /// List of available GPT models for selection.
+    /// List of available ChatModels for selection.
     /// </summary>
-    public IReadOnlyList<GPTModel> GPTModels { get; } = GPTModel.AllModels;
+    public IReadOnlyList<ChatModel> ChatModels { get; } = ChatModel.AllModels;
 
     /// <summary>
-    /// Gets or sets the OpenAI API key.
+    /// Gets or sets the API key.
     /// </summary>
-    public string OpenAIKey
+    public string APIKey
     {
-        get => SettingsManager.OpenAIKey;
+        get => SettingsManager.APIKey;
         set
         {
-            if (value != OpenAIKey)
+            if (value != APIKey)
             {
-                SettingsManager.OpenAIKey = value;
-                OnPropertyChanged(nameof(OpenAIKey));
+                SettingsManager.APIKey = value;
+                OnPropertyChanged(nameof(APIKey));
                 OnPropertyChanged(nameof(IsApiKeyValid));
             }
         }
     }
 
     /// <summary>
-    /// Gets a value indicating whether the OpenAI API key is valid.
+    /// Gets a value indicating whether the API key is valid.
     /// </summary>
-    public bool IsApiKeyValid => !string.IsNullOrWhiteSpace(OpenAIKey) && OpenAIKey.StartsWith("sk-");
+    public bool IsApiKeyValid => !string.IsNullOrWhiteSpace(APIKey) && APIKey.StartsWith("sk-");
 
     /// <summary>
-    /// Gets or sets the selected GPT model.
+    /// Gets or sets the selected ChatModel.
     /// </summary>
-    public GPTModel SelectedModel
+    public ChatModel SelectedModel
     {
-        get => GPTModels.FirstOrDefault(m => m.Id == SettingsManager.SelectedModel) ?? GPTModel.Gpt4oMini;
+        get => ChatModels.FirstOrDefault(m => m.ModelId == SettingsManager.SelectedModel) ?? ChatModel.Gpt4oMini;
         set
         {
             if (value != SelectedModel)
             {
-                SettingsManager.SelectedModel = value.Id;
+                SettingsManager.SelectedModel = value.ModelId;
                 OnPropertyChanged(nameof(SelectedModel));
             }
         }

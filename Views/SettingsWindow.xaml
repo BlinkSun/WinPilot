@@ -224,7 +224,7 @@
                          FontFamily="Segoe UI"
                          FontSize="13"
                          Foreground="White"
-                         Text="{Binding OpenAIKey, UpdateSourceTrigger=PropertyChanged}" />
+                         Text="{Binding APIKey, UpdateSourceTrigger=PropertyChanged}" />
             </Border>
 
             <TextBlock Margin="0,0,0,4"
@@ -235,7 +235,7 @@
                       Margin="0,0,0,16"
                       DisplayMemberPath="DisplayName"
                       ItemContainerStyle="{StaticResource DarkComboBoxItemStyle}"
-                      ItemsSource="{Binding GPTModels}"
+                      ItemsSource="{Binding ChatModels}"
                       SelectedItem="{Binding SelectedModel, Mode=TwoWay}"
                       Style="{StaticResource DarkComboBoxStyle}" />
 

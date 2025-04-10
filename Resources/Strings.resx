@@ -136,7 +136,7 @@
     <value>Modifiers</value>
   </data>
   <data name="Lbl_APIKey" xml:space="preserve">
-    <value>OpenAI API Key</value>
+    <value>API Key</value>
   </data>
   <data name="Lbl_Model" xml:space="preserve">
     <value>Model</value>
@@ -148,7 +148,7 @@
     <value>Too many modifier keys selected. Please select 3 or fewer.</value>
   </data>
   <data name="Chk_AutoSend" xml:space="preserve">
-    <value>Auto-send prompt to GPT</value>
+    <value>Auto-send prompt to AI</value>
   </data>
   <data name="Msg_HotkeyTitle" xml:space="preserve">
     <value>Invalid Hotkey</value>

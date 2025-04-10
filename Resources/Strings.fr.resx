@@ -136,7 +136,7 @@
     <value>Modificateurs</value>
   </data>
   <data name="Lbl_APIKey" xml:space="preserve">
-    <value>Clé API OpenAI</value>
+    <value>Clé API</value>
   </data>
   <data name="Lbl_Model" xml:space="preserve">
     <value>Modèle</value>
@@ -148,7 +148,7 @@
     <value>Trop de modificateurs sélectionnés. Veuillez en choisir 3 ou moins.</value>
   </data>
   <data name="Chk_AutoSend" xml:space="preserve">
-    <value>Envoi automatique d'un prompt à GPT</value>
+    <value>Envoi automatique d'un prompt à l'IA</value>
   </data>
   <data name="Msg_HotkeyTitle" xml:space="preserve">
     <value>Touche de raccourci invalide</value>

@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Input;
 using WinPilot.Controllers;
 using WinPilot.Helpers;
+using WinPilot.Interfaces;
 using WinPilot.Managers;
 using WinPilot.Models;
 using WinPilot.Native;
@@ -94,14 +95,16 @@ public class WinPilotViewModel : ViewModelBase
         DeclineCommand = new RelayCommand(OnDecline);
         SettingsCommand = new RelayCommand(OnSettings);
 
+        ChatModel chatModel = ChatModel.AllModels.FirstOrDefault(m => m.ModelId == SettingsManager.SelectedModel) ?? ChatModel.Gpt4oMini;
+
         if (SettingsManager.AutoSendPrompt)
-            Task.Run(() => GenerateSuggestionAsync());
+            Task.Run(() => GenerateSuggestionAsync(chatModel));
     }
 
     /// <summary>
     /// Generates a suggestion using the OpenAI API based on the current context.
     /// </summary>
-    public async Task GenerateSuggestionAsync()
+    public async Task GenerateSuggestionAsync(ChatModel chatModel)
     {
         if (string.IsNullOrWhiteSpace(SystemPrompt))
             return;
@@ -110,8 +113,13 @@ public class WinPilotViewModel : ViewModelBase
 
         try
         {
-            OpenAIClient client = new();
-            string? result = await client.SendContextToGPTAsync(SystemPrompt, UserPrompt, ScreenshotBytes);
+            IAIProviderService provider = chatModel.Provider switch
+            {
+                "Anthropic" => new AnthropicClient(),
+                "OpenAI" => new OpenAIClient(),
+                _ => throw new NotSupportedException()
+            };
+            string? result = await provider.GetSuggestionAsync(SystemPrompt, UserPrompt, ScreenshotBytes);
 
             Suggestion = string.IsNullOrWhiteSpace(result)
                 ? "No suggestion received."

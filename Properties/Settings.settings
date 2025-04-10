@@ -2,8 +2,8 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="WinPilot.Properties" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="OpenAIKey" Type="System.String" Scope="User">
-      <Value Profile="(Default)">YOUR_API_KEY_HERE</Value>
+    <Setting Name="APIKey" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="SelectedModel" Type="System.String" Scope="User">
       <Value Profile="(Default)">gpt-4o-mini</Value>

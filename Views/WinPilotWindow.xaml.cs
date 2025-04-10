@@ -4,6 +4,7 @@ using System.Windows.Media.Animation;
 using WinPilot.Controllers;
 using WinPilot.Managers;
 using WinPilot.Models;
+using WinPilot.Services;
 using WinPilot.ViewModels;
 
 namespace WinPilot.Views;
@@ -50,7 +51,8 @@ public partial class WinPilotWindow : Window
             }
             else
             {
-                Task.Run(() => vm?.GenerateSuggestionAsync());
+                ChatModel chatModel = ChatModel.AllModels.FirstOrDefault(m => m.ModelId == SettingsManager.SelectedModel) ?? ChatModel.Gpt4oMini;
+                Task.Run(() => vm?.GenerateSuggestionAsync(chatModel));
             }
         }
     }

@@ -97,7 +97,7 @@ namespace WinPilot.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à Auto-send prompt to GPT.
+        ///   Recherche une chaîne localisée semblable à Auto-send prompt to AI.
         /// </summary>
         public static string Chk_AutoSend {
             get {
@@ -106,7 +106,7 @@ namespace WinPilot.Resources {
         }
         
         /// <summary>
-        ///   Recherche une chaîne localisée semblable à OpenAI API Key.
+        ///   Recherche une chaîne localisée semblable à API Key.
         /// </summary>
         public static string Lbl_APIKey {
             get {

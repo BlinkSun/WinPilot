@@ -25,13 +25,13 @@ namespace WinPilot.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("YOUR_API_KEY_HERE")]
-        public string OpenAIKey {
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string APIKey {
             get {
-                return ((string)(this["OpenAIKey"]));
+                return ((string)(this["APIKey"]));
             }
             set {
-                this["OpenAIKey"] = value;
+                this["APIKey"] = value;
             }
         }
         

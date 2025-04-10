@@ -26,16 +26,16 @@ public class SettingsManager
     }
 
     /// <summary>
-    /// Gets or sets the OpenAI API key.
+    /// Gets or sets the API key.
     /// </summary>
-    public static string OpenAIKey
+    public static string APIKey
     {
-        get => settings.OpenAIKey;
+        get => settings.APIKey;
         set
         {
-            if (settings.OpenAIKey != value)
+            if (settings.APIKey != value)
             {
-                settings.OpenAIKey = value;
+                settings.APIKey = value;
                 Save();
             }
         }

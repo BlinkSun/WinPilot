@@ -20,13 +20,13 @@ public static class AppController
     }
 
     /// <summary>
-    /// Checks if the OpenAI key is valid. If not, it shows the settings window.
+    /// Checks if the API key is valid. If not, it shows the settings window.
     /// Shutsdown the application if the key is still invalid.
     /// </summary>
     public static void CheckOpenAIKey()
     {
-        if (string.IsNullOrWhiteSpace(SettingsManager.OpenAIKey) ||
-                !SettingsManager.OpenAIKey.StartsWith("sk-"))
+        if (string.IsNullOrWhiteSpace(SettingsManager.APIKey) ||
+                !SettingsManager.APIKey.StartsWith("sk-"))
         {
             UIController.ShowSettingsWindow();
         }
