@@ -131,18 +131,6 @@ Just don't call it "Copilot" or Microsoft might... pilot your repo into oblivion
 **Damien Villeneuve (aka BlinkSun)**  
 Dad. Dev. Dreamer.  
 [blinksun.ca](https://www.blinksun.ca)
-
----
-
-<p align="center">
-  <strong>☕ Enjoying WinPilot?</strong><br/>
-  If this tool saved you a few brain cells or ALT+TABs...
-</p>
-
-<p align="center">
-  <a href="https://www.buymeacoffee.com/blinksun">
-    <img src="https://img.shields.io/badge/☕-Buy me a coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy Me A Coffee"/>
-  </a>
 </p>
 
 <p align="center">
